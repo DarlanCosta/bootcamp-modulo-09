@@ -9,23 +9,23 @@ import { signInSuccess, signFailure } from './actions';
 export function* signIn({ payload }) {
   try {
     const { email, password } = payload;
-
+    console.tron.warn('teste0');
     const response = yield call(api.post, 'sessions', {
       email,
       password,
     });
-
+    console.tron.warn('teste1');
     const { token, user } = response.data;
 
     if (!user.provider) {
       toast.error('Usuário não é prestador de serviço!');
       return;
     }
-
+    console.tron.warn('teste3');
     api.defaults.headers.Authorization = `Bearer ${token}`;
 
     yield put(signInSuccess(token, user));
-    console.tron.error('testeeeeeeeee');
+    console.tron.warn('teste4');
     history.push('/dashboard');
   } catch (err) {
     toast.error('Falha na autenticação, verifique seus dados!');
@@ -59,8 +59,13 @@ export function setToken({ payload }) {
   }
 }
 
+export function signOut() {
+  history.push('/');
+}
+
 export default all([
   takeLatest('persist/REHYDRATE', setToken),
   takeLatest('@auth/SIGN_IN_REQUEST', signIn),
   takeLatest('@auth/SIGN_UP_REQUEST', signUp),
+  takeLatest('@auth/SIGN_OUT', signOut),
 ]);

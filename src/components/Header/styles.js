@@ -11,13 +11,13 @@ export const Content = styled.div`
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  align-items: cemter;
+  align-items: center;
 
   nav {
     display: flex;
     align-items: center;
 
-    imag {
+    img {
       margin-right: 20px;
       padding-right: 20px;
       border-right: 1px solid #eee;
@@ -59,6 +59,7 @@ export const Profile = styled.div`
   }
 
   img {
+    width: 32px;
     height: 32px;
     border-radius: 50%;
   }

@@ -37,7 +37,7 @@ export default function Notifications() {
       setNotifications(data);
     }
     loadNotifications();
-  });
+  }, []);
 
   function handleToggleVisible() {
     setVisible(!visible);
